@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+string s;
+int main(){
+	cin >> s;
+	
+	if(s[0] != '-'){
+		cout << s;
+		return 0;
+	}
+	
+	string s1, s2;
+	
+	for(int i=1; i<s.size()-1; i++){
+		s1= s1+s[i];
+	}
+	
+	for(int i=1; i<s.size()-2; i++){
+		s2= s2+s[i];
+	}
+	s2=s2+s[s.size()-1];
+	
+	if(s1 > s2){
+		if(s2=="0") cout << 0;
+		else
+		cout << "-" << s2;
+	}
+	
+	else if(s1!="0")cout << "-" << s1;
+	else cout << 0;
+	
+	
+	
+	
+	return 0;
+}
