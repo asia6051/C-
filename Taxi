@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+int tab[7];
+int n, x, ile;
+int main(){
+  	cin >> n;
+  	while(n--){
+  		cin >> x;
+  		tab[x]++;
+	  }
+	  ile=ile + tab[4];
+	  tab[4]=0;
+	  while(tab[3] > 0 ){
+	  	if(tab[1]>0){
+	  		ile++;
+	  		tab[3]--;
+	  		tab[1]--;
+		  }
+		  else{
+		  	ile++;
+		  	tab[3]--;
+		  }
+	  }
+	  while(tab[2]>0){
+	  	if(tab[2]>=2){
+	  		ile++;
+	  		tab[2]-=2;
+		  }
+		  else if(tab[1]>=2){
+		  	ile++;
+		  	tab[2]-=1;
+		  	tab[1]-=2;
+		  }
+		  else if(tab[1]>0){
+		  	ile++;
+		  	tab[2]-=1;
+		  	tab[1]-=1;
+		  }
+		  else {
+		  	ile++;
+		  	tab[2]--;
+		  }
+	  }
+	  while(tab[1]>0){
+	  	if(tab[1]%4==0){
+	  		ile+=tab[1]/4;
+	  		tab[1]=0;
+		  }
+		  else {
+		  	ile = ile + tab[1]/4 + 1;
+		  	tab[1]=0;
+		  }
+	  }
+	  cout << ile;
+    return 0;
+}
