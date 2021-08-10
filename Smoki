@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int s, n;
+
+struct smok {
+		int sila;
+		int bonus;
+} smoki[1007];
+
+bool cmp( smok a, smok b){
+	return a.sila < b.sila;
+}
+int main(){
+	
+	
+	cin >> s >> n;
+	
+	for(int i=0; i<n; i++){
+		cin >> smoki[i].sila;
+		cin >> smoki[i].bonus;
+	}
+	
+	sort(smoki, smoki+n, cmp);
+	
+	
+	for(int i=0; i<n; i++){
+		if(s <= smoki[i].sila ){
+			cout << "NO";
+			return 0;
+		}
+		else {
+			s += smoki[i].bonus;
+		}
+	}
+	
+	cout << "YES";
+	
+	return 0;
+}
