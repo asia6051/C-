@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+int tab[107];
+int sumapocz[107];
+int sumakon[107];
+
+int main(){
+	cin >> n;
+	for(int i=0; i<n; i++){
+		cin >> tab[i];
+	}
+	sort(tab, tab+n);
+	
+	sumapocz[0]=tab[0];
+	sumakon[n-1] = tab[n-1];
+	
+	for(int i=1; i<n; i++){
+		sumapocz[i] = sumapocz[i-1] + tab[i];
+	}
+	
+	 /*for(int i=0; i<n; i++){
+		cout << sumapocz[i] << " ";
+	}
+	cout << endl;
+	*/
+	
+	for(int i=n-2; i>=0; i--){
+		sumakon[i] = sumakon[i+1] + tab[i];
+	}
+	
+	/*for(int i=0; i<n; i++){
+		cout << sumakon[i] << " ";
+	}
+	cout << endl;
+	*/
+	int wynik=-1, i=0;;
+
+	while(sumapocz[i] < sumakon[i+1] and i<n-1) {
+		wynik = n- (i+1);
+		i++;
+	}
+	if(wynik <0) wynik =n;
+	cout << wynik;
+	return 0;
+	
+	
+	
+}
