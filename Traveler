@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int n, k, b, c;
+vector<pair<int,int> > G[100007];
+priority_queue< pair<int,int> > q;
+bool odw[100007];
+int odl[100007];
+
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	cin >> n >> k >> b >> c;
+	while(k--){
+		int u, v, t;
+		cin >> u >> v >> t;
+		G[u].push_back(make_pair(v,t));
+		G[v].push_back(make_pair(u,t));
+		
+	}
+	for(int i=1; i<=n; i++){
+		odl[i]=1e9;
+	}
+	q.push(make_pair(0,1));
+	while(!q.empty()){
+		pair <int,int> v;
+		v=q.top(); q.pop();
+			
+		if(odw[v.second]==1) {
+			continue;
+		}
+		odw[v.second]=1;
+		odl[v.second]=-v.first;
+		for(int i=0; i<G[v.second].size(); i++){
+			q.push(make_pair( -(odl[v.second]+G[v.second][i].second), G[v.second][i].first));
+		}
+	}
+	
+	sort(odl+1, odl+1+n);
+	int suma=0, i;
+	for(i=1; i<=n; i++){
+		if(suma+min(odl[i]*2, c) >b ){
+			 break;
+		}
+		suma=suma+min(odl[i]*2, c);
+	}
+	i--;
+	cout << i;
+	return 0;
+}
