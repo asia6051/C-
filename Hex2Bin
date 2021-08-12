@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+string t="0123456789ABCDEF";
+string s;
+long long n, w, k, suma=0, ile=0;
+long long liczba, tab[1000007], x;
+int main()
+{
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+    cin>> n;
+    for(int i=0; i<n; i++){
+    	cin >> s;
+    	
+    	for(int j=0; j<s.size(); j++){
+    		
+			if(j==0 && s[j]=='0') cout<<"0";
+    		while(t[k]!=s[j]){ //znajduje wartosc cyfry lub litery
+    			k++;
+			}
+			liczba=k;
+			if(liczba>7 or j==0)
+			while(liczba!=0) //zamieniam liczbe z dziesietnego na binarny
+			{
+	        	tab[x++]=liczba%2;
+	        	liczba=liczba/2;
+			}
+	    	else if(liczba<=7)
+	    	{
+	    		while(liczba!=0) //zamieniam liczbe z dziesietnego na binarny
+			{
+	        	tab[x++]=liczba%2;
+	        	liczba=liczba/2;
+			}
+			for(int y=x;y<4;y++)
+			{
+				tab[x++]=0;
+			}
+			}
+			for (int p=x-1; p>=0; p--)
+			{
+	    		cout<<tab[p];
+			}
+			x=0;
+			liczba=0;
+			k=0;
+			
+		}
+		cout << endl;
+			
+	}
+		
+    return 0;
+}
