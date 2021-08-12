@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,m;
+vector<int>w[10007];
+int main()
+{
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+cin >>n>>m;
+for(int i=0; i<m; i++){
+	int u,v;
+	cin >> u >> v;
+	w[u].push_back(v);
+	w[v].push_back(u);
+}
+int maximum=1; //nr kandydata na wodzireja
+for(int i=1; i<=n; i++){
+	if(w[i].size()>w[maximum].size()){
+		maximum=i;
+	}
+}
+cout << maximum << endl;
+sort(  w[maximum].begin(),  w[maximum].end()  );
+for(int i=0; i<w[maximum].size(); i++){
+	cout << w[maximum][i] << " ";
+}
+
+   return 0; 
+}
