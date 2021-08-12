@@ -1,0 +1,105 @@
+#include<bits/stdc++.h>
+using namespace std;
+string pom, s;
+stack<char>onp;
+long long tab[100006];
+bool priorytet(char a, char b){
+	if(a=='+' and b=='+') return 1;
+	if(a=='+' and b=='-') return 1;
+	if(a=='-' and b=='+') return 1;
+	if(a=='-' and b=='-') return 1;
+	if(a=='*' and b=='*') return 1;
+	if(a=='*' and b=='/') return 1;
+	if(a=='/' and b=='*') return 1;
+	if(a=='/' and b=='/') return 1;
+	if(a=='*' and b=='-') return 1;
+	if(a=='*' and b=='+') return 1;
+	if(a=='/' and b=='-') return 1;
+	if(a=='/' and b=='+') return 1;
+	return 0;
+}
+void notacja(string s){
+	for(int i=0; i<s.size(); i++){
+//		cout<< s[i] << endl;
+		if(s[i]>='0' && s[i]<='9'){
+			pom=pom+s[i];
+			if(s[i+1]<'0' or s[i+1]>'9')
+			{
+				pom=pom+" ";
+			}
+		}
+		else if(s[i]=='(' && s[i+1]=='-')
+			{
+				pom=pom+"0 ";
+				pom=pom+s[i+2];
+				pom=pom+" - ";
+				i+=3;
+			}
+		else if(s[i]=='+' or s[i]=='-' or s[i]=='*' or s[i]=='/'){
+			while(!onp.empty() && priorytet(onp.top(),s[i])==1){
+				pom=pom+onp.top();
+				pom=pom+" ";
+				onp.pop();
+				}
+				onp.push(s[i]);
+			}
+		else if(s[i]=='('){
+			onp.push(s[i]);
+		}
+		else if(s[i]==')'){
+			while(!onp.empty() and onp.top()!='('){
+				pom=pom+onp.top();
+				pom=pom+" ";
+				onp.pop();
+			}
+			if(onp.top()=='(')
+			onp.pop();
+		}
+	}
+	
+	while(!onp.empty()){
+		pom=pom+onp.top();
+		pom=pom+" ";
+		onp.pop();
+	}
+
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+getline(cin,s);
+notacja(s);
+int k=0;
+long long suma=0;
+	for(int j=0; j<pom.size(); j++){
+   		if(pom[j]>='0' and pom[j]<='9'){
+   			suma=suma*10 + (int)(pom[j]-'0');
+		}
+		else if(pom[j]==' ' and pom[j-1]>='0' and pom[j-1]<='9'){
+			tab[k]=suma;
+			k++;
+			suma=0;
+		}
+		else if(pom[j]=='+'){
+			tab[k-2]=tab[k-1]+tab[k-2];
+			k--;
+		}
+		else if(pom[j]=='-'){
+			tab[k-2]=tab[k-2]-tab[k-1];
+			k--;
+		}
+		else if(pom[j]=='*'){
+			tab[k-2]=tab[k-1]*tab[k-2];
+			k--;
+		}
+		else if(pom[j]=='/'){
+			tab[k-2]=tab[k-2]/tab[k-1];
+			k--;
+		}
+	}
+cout << tab[k-1];
+//cout << pom;
+   return 0; 
+}
