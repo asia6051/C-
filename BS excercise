@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long tab[1000007];
+long long v;
+int n, q, pocz, koniec, x;
+long long liczba;
+
+int find(int liczba){
+	int L=0, P=n-1, k;
+	while(L<=P){
+		k=(L+P)/2;
+		if( (tab[k] == liczba) && (tab[k-1] < liczba) or (tab[k] == liczba && k == 0)) return k;
+		if(tab[k] < liczba) L = k+1;
+		else P = k-1;
+	}
+	return -1;
+
+}
+
+int prawo( int x, int liczba ){
+	
+	int L=x, P=n-1, k;
+	while(L<=P){
+		k=(L+P)/2;
+		if( ((tab[k] == liczba) && (tab[k+1] > liczba)) or (tab[k]== liczba && k == n-1)) return k;
+		if(tab[k] == liczba) L = k+1;
+		else P = k-1;
+	}
+}
+
+int main()
+{
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+    cin >> n;
+    for(int i=0; i<n; i++){
+    	cin >> v;
+    	tab[i] = abs(v);
+	}
+	
+	
+	cin >> q;
+	for(int i=0; i<q; i++){
+		cin >> liczba;
+		x = find(liczba);
+		if(x == -1){
+			cout << 0 << endl;
+		}
+		else{
+			koniec = prawo(x, liczba);
+			cout << koniec-x+1 << endl;
+		}
+	}
+    return 0;
+    
+}
