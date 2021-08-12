@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long k, h, n , a, ile;
+bool d[1048576];
+int sprawdz(long long x){
+	if(x>=k or d[x]==1){
+		return 0;
+	}
+	else{
+		ile++;
+		if(2*x+1 <=k){
+			sprawdz(2*x)+sprawdz((2*x)+1);
+		}
+	}
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    
+   cin >> h >> n;
+   k = 1 << h;
+   for(int i=1; i<=n; i++){
+   		cin >> a;
+   		d[a]=1;
+   }
+   sprawdz(1);
+   cout << ile;
+ 	return 0;
+}
