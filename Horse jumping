@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n, p[1007][1007];
+int dx[]={-2,-2,-1,-1,1,1,2,2};
+int dy[]={-1,1,-2,2,-2,2,-1,1};
+void skacz(int x, int y){
+	p[x][y]=1;
+	for(int i=0;i<8;i++){
+		if(p[x+dx[i]][y+dy[i]]==0){
+			skacz(x+dx[i],y+dy[i]);
+		}
+	}
+}
+int main ()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	
+	cin >> n;
+	for(int i=0; i<=n+3; i++){
+		p[i][0]=p[i][1]=p[i][n+2]=p[i][n+3]=1;
+		p[0][i]=p[1][i]=p[n+2][i]=p[n+3][i]=1;
+	}
+	string s;
+	int xk,yk,xw,yw;
+	for(int y=0; y<n; y++){
+		cin >> s;
+		for(int x=0; x<n; x++){
+			if(s[x]=='x') p[x+2][y+2]=1;
+			if(s[x]=='k') xk=x+2, yk=y+2;
+			if(s[x]=='w') xw=x+2, yw=y+2;
+		}
+	}
+	skacz(xk,yk);
+	if(p[xw][yw]==1) cout << "TAK";
+	else cout << "NIE";
+	
+	
+	
+	
+	
+return 0;
+}
