@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> v[1000007];
+queue<int>q;
+int x,y,n,m,a,b,d;
+bool czy=true; 
+int odw[1000007]; 
+
+void bfs(int u, int kol){
+	q.push(u);
+	odw[u]=kol;
+	
+	while(!q.empty()){
+		u=q.front(); q.pop();
+		for(int i=0; i<(int)v[u].size(); i++){
+			int k=v[u][i];
+			if(!odw[k]){
+				odw[k]=kol;
+				q.push(k);
+			}
+		}
+	}
+}
+int main(){
+	
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	
+	cin >> n >> m;
+	for(int i=0; i<m; i++){
+		cin >> x >> y;
+		v[x].push_back(y);
+		v[y].push_back(x);
+	}
+	int ile=1;
+	for(int i=1; i<=n;i++){
+		if(odw[i]==0){
+			bfs(i,ile);
+			ile++;
+		}
+	}
+	cin >> d;
+	for(int i=1;i<=d;i++){
+		cin >> a >> b;
+		if(odw[a]==odw[b])cout << "TAK\n";
+		else cout << "NIE\n";
+	}
+	return 0;
+}
