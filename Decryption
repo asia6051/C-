@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+string s, kod;
+int n;
+int main()
+{
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+cin >> n;
+for(int i=0; i<n; i++){
+	cin >> s ;
+	cin >> kod;
+for(int j=0; j<s.size(); j++){
+	if(s[j] >= 'A' and s[i] <= 'Z'){
+		int k=j%kod.size();
+		//cout << k;
+		if(s[j]+('A')- kod[k]-1>= 'A'){
+			s[j]=s[j]+('A')- kod[k]-1;
+		}
+		else s[j]=s[j]+('A')+26- kod[k]-1;
+	}
+	}
+	cout << s<<endl;
+}
+
+   return 0; 
+}
