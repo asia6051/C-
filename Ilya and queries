@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n, l, r;
+int tab[100007];
+string s;
+int main(){
+	cin >> s;
+	for(int i=1; i<s.size(); i++){
+		if(s[i] == s[i-1]){
+			tab[i+1] = tab[i]+1;
+		}
+		else tab[i+1] = tab[i];
+	}
+/*for(int i=0; i<=s.size(); i++){
+		cout << tab[i] << " ";
+	}
+	cout << endl;*/
+	cin >> n;
+	while(n--){
+		cin >> l >> r;
+		cout << tab[r] - tab[l] << endl;
+	}
+	return 0;
+}
