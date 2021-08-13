@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+
+struct laptop {
+	int cena;
+	int jakosc;
+} laptopy[100005];
+
+bool cmp( laptop a, laptop b){
+	return a.cena > b.cena;
+}
+
+int main(){
+	cin >> n;
+	for(int i=0; i<n; i++){
+		cin >> laptopy[i].cena >> laptopy[i].jakosc;
+	}
+	
+	sort(laptopy, laptopy+n, cmp);
+	
+	int ile=0;
+	for(int i=0; i<n-1; i++){
+		if(laptopy[i].jakosc < laptopy[i+1].jakosc and laptopy[i].cena > laptopy[i+1].cena){
+			ile=1;
+		}
+	}
+	if(ile) cout << "Happy Alex";
+	else cout << "Poor Alex";
+	return 0;
+}
