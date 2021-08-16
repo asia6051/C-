@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int k,wynik, suma;
+int tab[13];
+bool cmp(int a , int b){
+	return a > b;
+}
+int main(){
+	cin >> k;
+	for(int i=0; i<12; i++){
+		cin >> tab[i];
+		suma+=tab[i];
+	}
+	if( suma < k){
+		cout << "-1";
+		return 0;
+	}
+	sort(tab,tab+12,cmp);
+	int i=0;
+	while(k>0 and i<12){
+		k-= tab[i];
+		wynik++;
+		i++;
+	}
+	cout << wynik;
+	return 0;
+}
