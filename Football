@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n, onep, twop;
+string s, one, two;
+int main(){
+	cin >> n;
+	cin >> one;
+	onep++;
+	n--;
+	while(n--){
+		cin >> s;
+		if( s==one) onep++;
+		else {
+			twop++;
+			two=s;
+		}
+	}
+	if(onep > twop) cout << one;
+	else cout << two;
+	return 0;
+}
