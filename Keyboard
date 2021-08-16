@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+char direction;
+string message;
+char keyboard[35] = {'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l',';','z','x','c','v','b','n','m',',','.','/'};
+int main(){
+	
+	cin >> direction;
+	cin >> message;
+	
+	if(direction == 'L'){
+		for(int i=0; i<message.size(); i++){
+			for(int j=0; j<35; j++){
+				if( keyboard[j] == message[i] ) cout << keyboard[j+1];
+			}
+		}
+	}
+	else{
+		for(int i=0; i<message.size(); i++){
+			for(int j=0; j<35; j++){
+				if( keyboard[j] == message[i] ) cout << keyboard[j-1];
+			}
+		}
+	}
+	return 0;
+}
