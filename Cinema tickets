@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n, x;
+int tab[107];
+int main(){
+	cin >> n;
+	while ( n-- ){
+		cin >> x;
+		if( x == 25 ) tab[25]++;
+		else {
+			if( x == 50 ){
+				if( tab[25] > 0 ) {
+					tab[25]--;
+					tab[50]++;
+				}
+				else{
+					cout << "NO";
+					return 0;
+				}
+			}
+			else if( x == 100 ){
+				if( tab[25] > 0 and tab[50] > 0 ){
+					tab[25]--;
+					tab[50]--;
+					tab[100]++;
+				}
+				else if( tab[25] > 2 ){
+					tab[25]-=3;
+					tab[100]++;
+				}
+				else{
+					cout << "NO";
+					return 0;
+				}
+			}
+		}
+	}
+	cout << "YES";
+	return 0;
+}
